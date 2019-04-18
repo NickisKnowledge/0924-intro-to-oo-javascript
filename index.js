@@ -1,17 +1,44 @@
 // code createUser() fn here 
 
-// using Function syntax
+// using ES6
 
-function User(username, age, hobby) {
-  this.username = username;
-  this.age = age;
-  this.hobby = hobby;
+class User {
+  static all = []
+
+  constructor(username, age, hobby) {
+    this.username = username;
+    this.age = age; 
+    this.hobby = hobby;
+
+    User.all.push(this);
+  }
+
+  description () {
+  //   return `
+  //   <tr>
+  //     <td>User ${this.username} is ${this.age} and likes to ${this.hobby}</td>
+  
+  //   </tr>
+  // `;
+
+  return `
+  <tr>
+    <td>${this.username} </td>
+    <td>${this.age} </td>
+    <td>${this.hobby}</td>
+  </tr>
+`;
+  }
+
+  static list() {
+    let list = document.getElementById('list');
+    list.innerHTML = '';
+    this.all.forEach(el => {
+      list.innerHTML+= el.description();
+    })
+  }
 }
 
-User.prototype.description = function() {
-  // console.log(`User ${this.username} is ${this.age} and likes to ${this.hobby}`)
-  return `User ${this.username} is ${this.age} and likes to ${this.hobby}`
-}
 
 function createUser(){
   // let user1 = {
@@ -34,12 +61,6 @@ function createUser(){
   document.getElementById('age').value = '';
   document.getElementById('hobby').value = '';
 
-  let list = document.getElementById('list');
-  list.innerHTML = `
-    <tr>
-      <td>${user1.description()}</td>
-  
-    </tr>
-  `
+  User.list();
 
 }
