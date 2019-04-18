@@ -20,17 +20,25 @@ function createUser(){
   //   hobby: 'play instruments'
   // }
 
-  let user1 = new User('Henry', 22, 'play instruments')
-  let user2 = new User('JS Love', 21, 'coding in JavaScript')
+  // grab data from form
+  let name = document.getElementById('username').value;
+  let lifeNumber = document.getElementById('age').value;
+  let interest = document.getElementById('hobby').value;
+
+  // create user object
+  let user1 = new User(name, lifeNumber, interest)
+  // let user2 = new User('JS Love', 21, 'coding in JavaScript')
+
+  // clear form
+  document.getElementById('username').value = '';
+  document.getElementById('age').value = '';
+  document.getElementById('hobby').value = '';
 
   let list = document.getElementById('list');
   list.innerHTML = `
     <tr>
       <td>${user1.description()}</td>
   
-    </tr>
-    <tr>
-      <td>${user2.description()}</td>
     </tr>
   `
 
